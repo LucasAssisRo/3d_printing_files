@@ -167,7 +167,7 @@ module playerMat() {
 module healthCounterToken() {
     translate([matSize[0] / 2 + 10, 0, 0])
     minkowski() {
-        cubeWidth = counterCutoutWidth - 4;
+        cubeWidth = counterCutoutWidth - 4.5;
         cube(size = [cubeWidth, cubeWidth, 10], center = true);
         cylinder(h = 1, r = 2, center = true, $fn = 360);
     }

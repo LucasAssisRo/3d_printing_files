@@ -1,3 +1,5 @@
+which = 0;
+
 floorHeight = 2;
 padding = 2;
 
@@ -122,40 +124,61 @@ module resourcesTray(index) {
         square(size = [resourcesHeight, resourcesWidth], center = true);
 }
 
-difference() { 
-    linear_extrude(height = matHeight, center = true)
-        square(size = matSize, center = true);
+module playerMat() {
+    difference() { 
+        linear_extrude(height = matHeight, center = true)
+            square(size = matSize, center = true);
 
-    translate(v = [
-        playerSlotCenter[0] + padding,
-        playerSlotCenter[1] - padding,
-        floorHeight / 1.9
-    ])
-    linear_extrude(height = floorHeight, center = true)
-        square(size = playerSlotSize, center = true);
+        translate(v = [
+            playerSlotCenter[0] + padding,
+            playerSlotCenter[1] - padding,
+            floorHeight / 1.9
+        ])
+        linear_extrude(height = floorHeight, center = true)
+            square(size = playerSlotSize, center = true);
 
-    translate(v = [
-        playerSlotCenter[0],
-        playerSlotCenter[1],
-        floorHeight / 1.9
-    ])
-    linear_extrude(height = 100, center = true)
-        circle(d = playerCutoutDiameter);
-    
-    for(index = [0:4]) {
-        statsCutout(index = index);
-    }
+        translate(v = [
+            playerSlotCenter[0],
+            playerSlotCenter[1],
+            floorHeight / 1.9
+        ])
+        linear_extrude(height = 100, center = true)
+            circle(d = playerCutoutDiameter);
+        
+        for(index = [0:4]) {
+            statsCutout(index = index);
+        }
 
-    for(index = [0:counterColumnCount - 1]) {
-        resourceTracker(column = index);
-    }
-   
-    for(index = [0:smallResourceTrayCount - 1]) {
-        if(index == smallResourceTrayCount - 1) {
-            translate(v = [0, -padding, 0]) 
+        for(index = [0:counterColumnCount - 1]) {
+            resourceTracker(column = index);
+        }
+       
+        for(index = [0:smallResourceTrayCount - 1]) {
+            if(index == smallResourceTrayCount - 1) {
+                translate(v = [0, -padding, 0]) 
+                    resourcesTray(index = index);
+            } else {
                 resourcesTray(index = index);
-        } else {
-            resourcesTray(index = index);
+            }
         }
     }
+}
+
+module healthCounterToken() {
+    translate([matSize[0] / 2 + 10, 0, 0])
+    minkowski() {
+        cubeWidth = counterCutoutWidth - 4;
+        cube(size = [cubeWidth, cubeWidth, 10], center = true);
+        cylinder(h = 1, r = 2, center = true, $fn = 360);
+    }
+}
+
+
+if (which == 1) {
+    playerMat();
+} else if (which == 2) {
+    healthCounterToken();
+} else {
+    playerMat();
+    healthCounterToken();
 }

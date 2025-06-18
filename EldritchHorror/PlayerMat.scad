@@ -139,11 +139,12 @@ module playerMat() {
 
         translate(v = [
             playerSlotCenter[0],
-            playerSlotCenter[1],
+            playerSlotCenter[1] + playerSlotSize[1] / 2,
             floorHeight / 1.9
         ])
         linear_extrude(height = 100, center = true)
-            circle(d = playerCutoutDiameter);
+            scale(v = [1, 2]) 
+            circle(d = playerSlotSize[1] / 3);
         
         for(index = [0:4]) {
             statsCutout(index = index);

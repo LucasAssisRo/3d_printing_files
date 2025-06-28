@@ -1,5 +1,5 @@
-cardBoxSlotWidth = 62;
-cardBoxSlotHeight = 90;
+cardBoxSlotWidth = 45;
+cardBoxSlotHeight = 71;
 cardBoxSlot = [cardBoxSlotWidth, cardBoxSlotHeight];
 
 wallOffset = 4;
@@ -8,7 +8,7 @@ cardBoxWidth = cardBoxSlotWidth + wallOffset;
 cardBoxHeight = cardBoxSlotHeight + wallOffset;
 cardBox = [cardBoxWidth, cardBoxHeight];
 
-cardBoxZRatio = 2;
+cardBoxZRatio = 1;
 cardBoxZ = (67 - wallOffset) / cardBoxZRatio;
 
 difference() {
@@ -18,16 +18,4 @@ difference() {
   translate(v=[wallOffset / 2, wallOffset / 2, wallOffset / 2])
     linear_extrude(cardBoxZ)
       square(size=cardBoxSlot);
-
-  translate(v=[wallOffset / 2, -wallOffset, wallOffset / 2])
-    linear_extrude(cardBoxZ)
-      square(size=cardBoxSlot);
-  translate(v=[cardBoxSlotWidth / 4, -wallOffset, -wallOffset])
-    linear_extrude(cardBoxZ * 2)
-      square(
-        size=[
-          cardBoxSlotWidth / 2,
-          cardBoxSlotHeight - cardBoxSlotWidth / 4 + wallOffset,
-        ],
-      );
 }

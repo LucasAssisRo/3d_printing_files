@@ -1,5 +1,5 @@
-cardBoxSlotWidth = 62;
-cardBoxSlotHeight = 90;
+cardBoxSlotWidth = 45;
+cardBoxSlotHeight = 71;
 cardBoxSlot = [cardBoxSlotWidth, cardBoxSlotHeight];
 
 wallOffset = 4;
@@ -8,8 +8,7 @@ cardBoxWidth = cardBoxSlotWidth + wallOffset;
 cardBoxHeight = cardBoxSlotHeight + wallOffset;
 cardBox = [cardBoxWidth, cardBoxHeight];
 
-cardBoxZRatio = 2;
-cardBoxZ = (67 - wallOffset) / cardBoxZRatio;
+cardBoxZ = 67 - wallOffset;
 
 difference() {
   linear_extrude(cardBoxZ)

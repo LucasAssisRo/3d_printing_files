@@ -60,7 +60,7 @@ module statsCutout(index) {
 module resourceTracker(column) {
   for (row = [1:counterRowCount]) {
     v = [
-      playerSlotCenter[0] + playerSlotSize[0] / 2 + padding - (counterCutoutWidth / 2) - ( (padding + counterCutoutWidth) * (row - 1) ),
+      playerSlotCenter[0] + playerSlotSize[0] / 2 + padding - (counterCutoutWidth / 2) - ( (padding + counterCutoutWidth) * (row - 1)),
       playerSlotCenter[1] - playerSlotSize[1] / 2 - counterCutoutWidth / 2 - padding * 2 - (counterCutoutWidth + padding) * column,
       floorHeight / 1.9,
     ];
